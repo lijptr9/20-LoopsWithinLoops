@@ -98,7 +98,7 @@ def draw_L(window, circle, r, c):
         y= y+ 2*radius
         x = original_x
 
-    new_y = original_y + 20*radius
+    new_y = original_y + 2*r*radius
 
     for m in range(3):
         for n in range(c +3):
@@ -154,8 +154,30 @@ def draw_wall_on_right(rectangle, n, window):
       :type window: rg.RoseWindow
     and n is a small, positive integer.
     """
+    width= rectangle.get_width()
+    height = rectangle.get_height()
+    original_x= rectangle.corner_1.x
+    original_y= rectangle.corner_1.y
+    x = original_x
+    y = original_y
+
+    for k in range(n):
+        for j in range(k+1):
+            new_rec= rg.Rectangle(rg.Point(x, y), rg.Point(x+ width,y+ height))
+            new_rec.fill_color = rectangle.fill_color
+            new_rec.attach_to(window)
+            window.render()
+
+            x = x- width
+
+        x = original_x
+        y = y+ height
+
+
+
+
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
